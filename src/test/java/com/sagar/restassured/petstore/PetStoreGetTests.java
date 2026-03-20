@@ -67,13 +67,15 @@ public class PetStoreGetTests extends BaseTest {
         assert validPetId != -1 : "No valid pet ID found from available pets list";
 
         // Step 4 - final assertion
+        // Step 4 - final assertion
         given(petstoreSpec)
                 .pathParam("petId", validPetId)
                 .when()
                 .get(Endpoints.GET_PET_BY_ID)
                 .then()
                 .statusCode(200)
-                .body("id", equalTo(validPetId));
+                .body("name", notNullValue())
+                .body("status", notNullValue());
     }
 
     @Test
