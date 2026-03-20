@@ -46,6 +46,8 @@ public class ConfigReader {
         return get("auth.password");
     }
 
+    public static String getReqresApiKey() {return get("reqres.api.key");}
+
     public static String getEnv() {
         return get("env");
     }

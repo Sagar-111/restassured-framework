@@ -31,6 +31,7 @@ public class BaseTest {
         reqresSpec = new RequestSpecBuilder()
                 .setBaseUri(ConfigReader.getReqresBaseUrl())
                 .setContentType(ContentType.JSON)
+                .addHeader("x-api-key", ConfigReader.getReqresApiKey())
                 .addFilter(new ResponseLoggingFilter())
                 .addFilter(new RequestLoggingFilter())
                 .build();
