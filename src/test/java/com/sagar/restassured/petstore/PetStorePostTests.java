@@ -3,10 +3,7 @@ package com.sagar.restassured.petstore;
 import com.sagar.restassured.base.BaseTest;
 import com.sagar.restassured.constants.Endpoints;
 import com.sagar.restassured.utils.PetPayloadBuilder;
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,6 +11,8 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+@Epic("Petstore API")
+@Feature("Pet CRUD Operations")
 public class PetStorePostTests extends BaseTest {
 
     private long petId;
