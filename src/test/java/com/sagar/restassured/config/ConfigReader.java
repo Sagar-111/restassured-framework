@@ -1,13 +1,12 @@
 package com.sagar.restassured.config;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
 
     private static Properties properties;
-    private static final String CONFIG_FILE_PATH="config.properties";
 
     static {
         loadProperties();
@@ -15,10 +14,15 @@ public class ConfigReader {
 
     private static void loadProperties(){
         properties=new Properties();
-        try(FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH)){
-            properties.load(fis);
+        try(InputStream is = ConfigReader.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties")){
+            if(is == null){
+                throw new RuntimeException("config.properties not found on classpath");
+            }
+            properties.load(is);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load config.properties from path: "+CONFIG_FILE_PATH,e);
+            throw new RuntimeException("Failed to load config.properties.",e);
         }
     }
 
