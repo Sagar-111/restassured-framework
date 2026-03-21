@@ -1,0 +1,13 @@
+# Base URLs
+petstore.base.url=https://petstore.swagger.io/v2
+reqres.base.url=https://reqres.in/api
+
+# Auth credentials (ReqRes test account)
+auth.email=eve.holt@reqres.in
+auth.password=cityslicka
+
+# ReqRes API Key
+reqres.api.key=YOUR_API_KEY_HERE
+
+# Environment
+env=dev

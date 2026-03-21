@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven_3.9'
+        jdk 'JDK_17'
+    }
+
+    environment {
+        ALLURE_RESULTS_DIR = 'target/allure-results'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                bat 'mvn clean compile -U'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running API tests...'
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    echo 'Publishing TestNG results...'
+                    testNG reportFilenamePattern: '**/target/surefire-reports/testng-results.xml'
+                }
+            }
+        }
+
+        stage('Allure Report') {
+            steps {
+                echo 'Generating Allure report...'
+            }
+            post {
+                always {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: "${ALLURE_RESULTS_DIR}"]]
+                    ])
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully. All tests passed.'
+        }
+        failure {
+            echo 'Pipeline failed. Check test results and Allure report.'
+        }
+        always {
+            echo 'Cleaning workspace...'
+            cleanWs()
+        }
+    }
+}
