@@ -4,10 +4,7 @@ import com.sagar.restassured.base.BaseTest;
 import com.sagar.restassured.config.ConfigReader;
 import com.sagar.restassured.constants.Endpoints;
 import com.sagar.restassured.utils.AuthPayloadBuilder;
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
@@ -15,6 +12,8 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+@Epic("ReqRes API")
+@Feature("Authentication & Authorization")
 public class AuthTests extends BaseTest {
 
     private static String authToken;
