@@ -43,6 +43,7 @@ pipeline {
             post {
                 always {
                     allure([
+                        commandline: 'Allure',
                         includeProperties: false,
                         jdk: '',
                         properties: [],
