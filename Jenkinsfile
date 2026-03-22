@@ -34,12 +34,6 @@ pipeline {
                     bat 'mvn test'
                 }
             }
-            post {
-                always {
-                    echo 'Publishing TestNG results...'
-                    testNG reportFilenamePattern: '**/target/surefire-reports/testng-results.xml'
-                }
-            }
         }
 
         stage('Allure Report') {
