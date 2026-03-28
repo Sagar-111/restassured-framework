@@ -1,0 +1,17 @@
+[
+  {
+    "name" : "BullDog",
+    "status" : "available",
+    "categoryName" : "Dogs"
+  },
+  {
+    "name": "Persian",
+    "status": "pending",
+    "categoryName": "Cats"
+  },
+  {
+    "name": "Parrot",
+    "status": "sold",
+    "categoryName": "Birds"
+  }
+]
