@@ -6,6 +6,11 @@ pipeline {
         jdk 'JDK_17'
     }
 
+    triggers {
+        githubPush()
+        cron('0 8 * * 1-5')
+    }
+
     environment {
         ALLURE_RESULTS_DIR = 'target/allure-results'
     }
