@@ -6,8 +6,8 @@ reqres.base.url=https://reqres.in/api
 auth.email=eve.holt@reqres.in
 auth.password=cityslicka
 
-# ReqRes API Key
+# ReqRes API Key - You can have this on there website home page. Have provided option to generate api-key
 reqres.api.key=YOUR_API_KEY_HERE
 
 # Environment
-env=dev
+env=YOUR_ENV
