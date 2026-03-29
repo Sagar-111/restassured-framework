@@ -35,7 +35,7 @@ pipeline {
             steps {
                 echo 'Injecting config and running API tests...'
                 withCredentials([file(credentialsId: 'restassured-config', variable: 'CONFIG_FILE')]) {
-                    bat 'copy "%CONFIG_FILE%" src\\test\\resources\\config.properties'
+                    bat 'copy "%CONFIG_FILE%" src\\test\\resources\\config-dev.properties'
                     bat 'mvn test'
                 }
             }
