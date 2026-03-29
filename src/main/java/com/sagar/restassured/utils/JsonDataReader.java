@@ -17,7 +17,7 @@ public class JsonDataReader {
         List<Object[]> data = new ArrayList<>();
         try(InputStream is = JsonDataReader.class
                 .getClassLoader()
-                .getResourceAsStream("testData/"+fileName)){
+                .getResourceAsStream("testdata/"+fileName)){
 
             if(is == null){
                 throw new RuntimeException("Test data file not found: " + fileName);
