@@ -14,22 +14,29 @@ public class ConfigReader {
 
     private static void loadProperties(){
         properties=new Properties();
+
+        String env = System.getProperty("env", "dev");
+        String configFileName = "config-" + env + ".properties";
+
+        System.out.println("Loading config for environment: " + env);
+        System.out.println("Config file: " + configFileName);
+
         try(InputStream is = ConfigReader.class
                 .getClassLoader()
-                .getResourceAsStream("config.properties")){
+                .getResourceAsStream(configFileName)){
             if(is == null){
-                throw new RuntimeException("config.properties not found on classpath");
+                throw new RuntimeException("Config file not found: " + configFileName);
             }
             properties.load(is);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load config.properties.",e);
+            throw new RuntimeException("Failed to load: " + configFileName, e);
         }
     }
 
     public static String get(String key){
         String value = properties.getProperty(key);
         if(value==null){
-            throw new RuntimeException("Property '"+key+"' not found in config.properties");
+            throw new RuntimeException("Property '"+key+"' not found in config-staging.properties");
         }
         return value.trim();
     }
@@ -51,9 +58,5 @@ public class ConfigReader {
     }
 
     public static String getReqresApiKey() {return get("reqres.api.key");}
-
-    public static String getEnv() {
-        return get("env");
-    }
 
 }

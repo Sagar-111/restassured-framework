@@ -23,6 +23,12 @@
     <allure.testng.version>2.25.0</allure.testng.version>
     <jackson.version>2.17.0</jackson.version>
     <slf4j.version>2.0.12</slf4j.version>
+
+    <!-- Default environment — overridable via -Denv=staging -->
+    <env>dev</env>
+    <groups></groups>
+    <threads>1</threads>
+
   </properties>
 
   <dependencies>
@@ -59,7 +65,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Jackson - for serialising/deserialising JSON payloads -->
+    <!-- Jackson - for serialising/de-serialising JSON payloads -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -90,6 +96,12 @@
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
           </argLine>
+          <systemPropertyVariables>
+            <!-- Pass env to Java System properties -->
+            <env>${env}</env>
+            <groups>${groups}</groups>
+            <threads>${threads}</threads>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
 
