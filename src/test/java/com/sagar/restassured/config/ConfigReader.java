@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ConfigReader {
 
     private static Properties properties;
+    private static String configFileName;
 
     static {
         loadProperties();
@@ -16,7 +17,7 @@ public class ConfigReader {
         properties=new Properties();
 
         String env = System.getProperty("env", "dev");
-        String configFileName = "config-" + env + ".properties";
+        configFileName = "config-" + env + ".properties";
 
         System.out.println("Loading config for environment: " + env);
         System.out.println("Config file: " + configFileName);
@@ -36,7 +37,7 @@ public class ConfigReader {
     public static String get(String key){
         String value = properties.getProperty(key);
         if(value==null){
-            throw new RuntimeException("Property '"+key+"' not found in config-staging.properties");
+            throw new RuntimeException("Property '"+key+"' not found in " + configFileName);
         }
         return value.trim();
     }
