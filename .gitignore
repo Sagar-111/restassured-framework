@@ -20,4 +20,6 @@ allure-report/
 Thumbs.db
 
 # Environment / secrets
-src/test/resources/config.properties
+src/test/resources/config-dev.properties
+src/test/resources/config-staging.properties
+src/test/resources/config-prod.properties
